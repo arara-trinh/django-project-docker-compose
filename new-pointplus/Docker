@@ -1,0 +1,62 @@
+Docker
+
+docker is configured to use the default machine with IP 192.168.99.100
+
+/Users/trinhxuanson/docker-shared/new-pointplus
+
+
+pipenv install --python /usr/local/Cellar/python@3.8/3.8.2/bin/python3.8
+
+pipenv install django==3.0.5
+
+django-admin.py startproject django_pointplus .
+
+Pipfile
+Pipfile.lock
+manage.py
+django_pointplus
+
+touch settings/uat.py
+touch settings/development.py
+
+
+touch settings/__init__.py
+touch settings/base.py
+touch settings/production.py
+touch settings/uat.py
+touch settings/development.py
+
+
+mv settings.py settings/base.py
+
+production.pyとdevelopment.py、test.pyにbase.pyの内容を読み込ませる
+
+編集前
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_pointplus.settings')
+
+編集後
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_pointplus.settings.development')
+
+
+pipenv install --skip-lock mysqlclient==5.7
+
+pipenv install --skip-lock
+
+https://pipenv-ja.readthedocs.io/ja/translate-ja/diagnose.html
+
+
+pythonがMySQLに接続するためのドライバをインストールする必要
+
+docker-composeでMySQL5.7
+
+
+docker run -d --name postgres93 -e POSTGRES_PASSWORD=test -p 5432:5432 postgres:9.3
+docker exec -ti docker-shared_django_1 bash
+
+docker-compose exec -it docker-shared_django_1 /bin/bash
+docker exec -it docker-shared_django_1 sh
+docker exec -it docker-shared_db_1 /bin/bash
+
+mysql -u root -p
+password : root
+
